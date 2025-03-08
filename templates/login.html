@@ -1,0 +1,132 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<style>
+  /* Full Page Centering */
+.register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #333, #eca3a3); /* Change colors as needed */
+}
+
+/* Card Styling */
+.register-card {
+    background: #333;
+    padding:30px 40px;
+    width: 380px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    text-align: center;
+}
+
+/* Title Styling */
+.register-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #fff;
+    text-shadow: 3px 3px 6px rgba(255, 255, 255, 0.3), 
+                 -3px -3px 6px rgba(255, 255, 255, 0.2);
+}
+
+/* Form Input Fields */
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.form-group label {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 5px;
+    color: #fff;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border:none;
+    outline: none;
+    color:#fff;
+    border-bottom: 1px solid #ccc;
+    background-color: transparent;
+    border-radius: 6px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.form-group input:focus {
+    border-color: #007bff;
+}
+
+/* Error Message */
+.error {
+    color: #d32f2f;
+    font-size: 14px;
+}
+
+/* Register Button */
+.register-btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    background: #eca3a3;
+    color: #333;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.register-btn:hover {
+    background: #333;
+    color: #eca3a3;
+    box-shadow: -3px 5px 8px white;
+}
+
+/* Footer Text */
+.register-footer {
+    font-size: 14px;
+    color:#fff;
+}
+
+.login-link {
+    color: #eca3a3;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.3rem;
+}
+
+.login-link:hover {
+    text-decoration: underline;
+}
+
+</style>
+
+<div class="register-container">
+    <div class="register-card">
+        <h2 class="register-title">LOGIN</h2>
+        <form action="/login/" method="POST">
+            {% csrf_token %}
+            
+            <!-- Django Form Fields -->
+            {% for field in form %}
+                <div class="form-group">
+                    <label>{{ field.label }}</label>
+                    {{ field }}
+                    {% if field.errors %}
+                        <small class="error">{{ field.errors|striptags }}</small>
+                    {% endif %}
+                </div>
+            {% endfor %}
+            
+            <button type="submit" class="register-btn">LOGIN</button>
+        </form>
+
+    </div>
+</div>
+{% endblock %}

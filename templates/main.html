@@ -1,0 +1,114 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HerFinance</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Allura&display=swap');
+      /* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #fefefe;
+    color: #333;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #eca3a3;
+    padding: 10px 20px;
+    box-shadow: 0px 5px 10px #eca3a3;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.logo-image {
+  height: 3.5rem;
+  margin: 4%;
+  box-shadow: 0px 15px 10px rgba(128, 128, 128, 0.5);
+}
+.left {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.right {
+  display: flex;
+  justify-content: space-between;
+}
+.nav-btn {
+  font-size: 1.3rem;
+  padding: 10px 20px;
+  margin-right: 0.5rem;
+  border-radius: 7px;
+  background: linear-gradient(to bottom, #333, #333);
+  color: #fff;
+  font-weight: 400;
+  border: none;
+  box-shadow: 0px 10px 15px rgba(128, 128, 128, 0.5);
+  text-decoration: none;
+  display: inline-block;
+}
+.nav-btn:hover {
+  background: linear-gradient(to right, #fff, #fff);
+  color: #333;
+  cursor: pointer;
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(255, 175, 0, 0.5);
+}
+/* section */
+section{
+  min-height: 540px;
+}
+/* Footer */
+footer {
+    text-align: center;
+    padding: 10px;
+    background: #333;
+    color: white;
+    box-shadow: 0px -10px 10px rgba(128, 128, 128, 0.7);
+}
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+      <div class="left">
+        <img src="{% static 'images/logo.png' %}" class="logo-image">
+        <div class="logo">HerFinance</div>
+      </div>
+      <div class="right">
+        {% if user.is_authenticated %}
+          <a href="{% url 'about' %}" class="nav-btn">About</a>
+          <a href="{% url 'about' %}#services" class="nav-btn">Services</a>
+          <a href="{% url 'about' %}#faqs" class="nav-btn">FAQs</a>
+          <a href="{% url 'tutorials' %}" class="nav-btn">Tutorials</a>
+          <a href="{% url 'logout' %}" class="nav-btn">Logout</a>
+        {% else %}
+          <a href="{% url 'register' %}" class="nav-btn">Register</a>
+          <a href="{% url 'login' %}" class="nav-btn">Login</a>
+        {% endif %}
+      </div>
+    </header>
+    <section>
+    {% block content %}
+
+    {% endblock %}
+    </section>
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 HerFinance. Made by Titiksha. All rights reserved.</p>
+    </footer>
+    <script></script>
+</body>
+</html>

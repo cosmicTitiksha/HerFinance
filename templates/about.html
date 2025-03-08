@@ -1,0 +1,316 @@
+
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+<style>
+  * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+  }
+body{
+  background: linear-gradient(to right, #333, #333, #eca3a3);
+}
+  .auth-buttons {
+      display: flex;
+      gap: 10px;
+  }
+
+  .btn {
+      background: #28a745;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+  }
+
+  .hero {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 50px;
+      width: 100%;
+  }
+
+  .hero-content {
+      max-width: 50%;
+  }
+
+  .hero h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+  }
+
+  .hero p {
+      font-size: 18px;
+      margin-bottom: 20px;
+  }
+
+  .hero-image {
+      position: relative;
+
+  }
+
+  .moving-phone {
+      width: 300px;
+      animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-18px); }
+      100% { transform: translateY(0px); }
+  }
+  .classy-text{
+  font-size: 4rem;
+  font-family: 'Allura', cursive;
+  font-weight: bold;
+  color: #eca3a3;
+  text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.7);
+
+}
+.services-section {
+    padding: 50px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(to left, #333, #333, #eca3a3);
+}
+
+.row{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.bubble-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    flex: 1;
+}
+
+.bubble {
+    background: gray;
+    color: #000;
+    padding: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+    position: relative;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.6), 
+              inset -2px -2px 5px rgba(255, 255, 255, 0.3);
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6), 
+                -1px -1px 2px rgba(255, 255, 255, 0.3); /* Shadow + Highlight */
+}
+
+@keyframes burstFade {
+    0% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.2); }
+    100% { opacity: 0; transform: scale(1.5); }
+}
+
+@keyframes starUp {
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    100% { transform: translateY(-50px) scale(0.5); opacity: 0; }
+}
+
+.bubble.burst {
+    background: transparent !important; /* Hide bubble background */
+    box-shadow: none; /* Remove shadow */
+    animation: burstFade 0.5s forwards;
+}
+
+.bubble-text {
+    position: absolute;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    z-index: 10;
+}
+
+.star {
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    background: gold;
+    border-radius: 50%;
+    animation: starUp 1.5s ease-out forwards;
+}
+.treasure-chest{
+  width: 35%;
+}
+.treasure-chest-image{
+  width: 100%;
+}
+.faqs-section {
+    padding: 50px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.faq-section {
+    width: 70%;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.faq-title {
+    text-align: center;
+    font-size: 28px;
+    color: #fff;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.faq-item {
+    margin: 15px 0;
+}
+
+.faq-question {
+    width: 100%;
+    padding: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    background: #808080;
+    color: #000;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    transition: 0.3s;
+    border-radius: 5px;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6), 
+                -1px -1px 5px rgba(255, 255, 255, 0.3);
+}
+
+.faq-question:hover {
+    background: #666;
+}
+
+.faq-answer {
+    display: none;
+    padding: 12px;
+    background: wheat;
+    color: #333;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+</style>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="classy-text">"Empowering Your Finances, Elevating Your Future."</div>
+    <div style="font-size: 1.4rem; color: #ffffff;">At HerFinance, we believe that financial freedom isn’t just a dream—it’s a journey, and we’re here to walk it with you. Whether you're looking to grow your wealth, secure your future, or take control of your financial well-being, we provide the tools, insights, and strategies to make it happen.
+
+    We are more than a financial service provider—<div class="classy-text" style="font-size: 1.6rem;">we are your partner in prosperity, your guide to smart money moves, and your trusted companion on the road to success.</div></div>
+  </div>
+  </div>
+  <div class="hero-image">
+      <img src="{% static 'images/women_on_chair.png' %}" alt="HerFinance" class="moving-phone">
+  </div>
+</section>
+
+<section class="services-section" id="services">
+  <div class="classy-text">Our Services</div>
+  <div class="row">
+    <div class="treasure-chest"><img src="{% static 'images/logo_without_bg.png' %}" class="treasure-chest-image"></div>
+    <div class="bubble-container">
+      <div class="bubble" onclick="burstBubble(this, 'tutorials')">Tutorials</div>
+      <div class="bubble" onclick="burstBubble(this, 'sipCalculator')">SIP Calculator</div>
+      <div class="bubble" onclick="burstBubble(this, 'financialPlanning')">Financial Planning</div>
+      <div class="bubble" onclick="burstBubble(this, 'emiCalculator')">EMI Calculator</div>
+      <div class="bubble" onclick="burstBubble(this, 'expenseTracker')">Expense Tracker</div>
+      <div class="bubble" onclick="burstBubble(this, 'investmentPortfolio')">Investment Portfolio Tracker</div>
+  </div>
+  </div>
+</section>
+
+<section class="faqs-section" id="faqs">
+  <div class="classy-text">FAQs</div>
+  <div class="faq-section">
+    <div class="faq-item">
+      <button class="faq-question">What is SIP, and how does it work?</button>
+      <div class="faq-answer">
+          <p>A Systematic Investment Plan (SIP) allows you to invest a fixed amount in mutual funds regularly, helping in wealth accumulation.</p>
+      </div>
+  </div>
+
+  <div class="faq-item">
+      <button class="faq-question">How can I start investing?</button>
+      <div class="faq-answer">
+          <p>You can start investing by choosing a financial plan, setting up an account, and consulting an advisor.</p>
+      </div>
+  </div>
+
+  <div class="faq-item">
+      <button class="faq-question">What is a budget planner?</button>
+      <div class="faq-answer">
+          <p>A budget planner helps you allocate income, track expenses, and manage your finances effectively.</p>
+      </div>
+  </div>
+  </div>
+</section>
+
+<script>
+  function burstBubble(element, url) {
+    // Keep text in place
+    let text = element.innerHTML;
+    element.innerHTML = `<span class="bubble-text">${text}</span>`; 
+    
+    // Add star effect
+    for (let i = 0; i < 6; i++) { // Generate 6 stars
+        let star = document.createElement("div");
+        star.classList.add("star");
+        star.style.left = `${Math.random() * 100}%`;
+        star.style.top = `${Math.random() * 100}%`;
+        star.style.animationDelay = `${Math.random() * 0.2}s`; // Random delay for natural effect
+        element.appendChild(star);
+    }
+
+    // Add burst effect
+    element.classList.add('burst');
+
+    // Wait for animation, then redirect
+    setTimeout(() => {
+        window.location.href = url;
+    }, 600);
+}
+window.addEventListener('pageshow', function(event) {
+    if (event.persisted) {
+      window.location.reload();
+    }
+  });
+  document.querySelectorAll(".faq-question").forEach(button => {
+    button.addEventListener("click", () => {
+        const answer = button.nextElementSibling;
+
+        if (answer.style.display === "block") {
+            answer.style.display = "none";
+        } else {
+            answer.style.display = "block";
+        }
+    });
+});
+function burstBubble(element, page) {
+    window.location.href = "/" + page;  // Redirects to the correct page
+}
+
+</script>
+
+
+
+{% endblock %}

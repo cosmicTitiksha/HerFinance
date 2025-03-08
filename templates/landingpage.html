@@ -1,0 +1,48 @@
+{% extends 'main.html' %}
+{% load static %}
+
+
+{% block content %}
+<style>
+  /* section */
+section{
+  width: 100%;
+  min-height: 550px;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(to right, #333, #333, #eca3a3);
+}
+.main-left{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 3rem;
+}
+.classy-text{
+  font-size: 5rem;
+  font-family: 'Allura', cursive;
+  font-weight: bold;
+  color: #eca3a3;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+
+}
+.logo-without-bg{
+  height: 35rem;
+}
+</style>
+
+
+<!--main Section-->
+<section>
+  <div class="main-left">
+    <div class="classy-text">Especially Tailored for 'HER'</div>
+    <div style="font-size: 1.6rem; color: #ffffff; font-family: 'Allura';">Hey, beautiful! Managing money doesn’t have to be confusing or stressful. HerFinance is your safe space to learn, grow, and take charge of your financial future—one smart step at a time. Whether it’s budgeting, saving, or investing, we break it down in a way that’s simple, relatable, and totally doable. Because every woman deserves financial freedom and the confidence that comes with it. Let’s make money moves together!</div>
+  </div>
+  <div class="main-right">
+    <img src="{% static 'images/logo_without_bg.png' %}" class="logo-without-bg">
+  </div>
+</section>
+
+{% endblock %}
